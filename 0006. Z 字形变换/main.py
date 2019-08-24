@@ -9,8 +9,12 @@ class Solution(object):
 
         store = ['' for i in range(numRows)]
         
+        print('---------------------')
+        print(store)
         curIndex, direct = 0, 1
         for i in range(len(s)):
+            print('**************************')
+            print(curIndex, direct)
             store[curIndex] += s[i]
 
             tmp = curIndex + direct

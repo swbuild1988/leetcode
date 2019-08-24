@@ -13,7 +13,6 @@ class Solution(object):
 
             if (y < -2147483648 or y > 2147483647):
                 return 0
-                
         return y
 
 
