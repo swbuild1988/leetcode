@@ -12,22 +12,12 @@ class Solution1(object):
         """
 
         col = [-1 for _ in range(n)]
-        self.res = []
+        self.res = 0
 
         def solve(row):
 
             if row == n:
-                tmp = []
-                for i in range(n):
-                    s = ""
-                    for j in range(n):
-                        if j == col[i]:
-                            s += "Q"
-                        else:
-                            s += "."
-                    tmp.append(s)
-
-                self.res.append(tmp)
+                self.res += 1
                 return
 
             # 将第row行的皇后放在第i列，col[row] = i
@@ -63,22 +53,12 @@ class Solution2(object):
         shu = [False for _ in range(n)]
         pie = [False for _ in range(2*n-1)]
         na = [False for _ in range(2*n-1)]
-        self.res = []
+        self.res = 0
 
         def solve(row):
 
             if row == n:
-                tmp = []
-                for i in range(n):
-                    s = ""
-                    for j in range(n):
-                        if j == col[i]:
-                            s += "Q"
-                        else:
-                            s += "."
-                    tmp.append(s)
-
-                self.res.append(tmp)
+                self.res += 1
                 return
 
             # 将第row行的皇后放在第i列，col[row] = i
@@ -127,22 +107,12 @@ class Solution3(object):
 
         col = [-1 for _ in range(n)]
         self.shu = self.pie = self.na = 0
-        self.res = []
+        self.res = 0
 
         def solve(row):
 
             if row == n:
-                tmp = []
-                for i in range(n):
-                    s = ""
-                    for j in range(n):
-                        if j == col[i]:
-                            s += "Q"
-                        else:
-                            s += "."
-                    tmp.append(s)
-
-                self.res.append(tmp)
+                self.res += 1
                 return
 
             # 将第row行的皇后放在第i列，col[row] = i
@@ -195,22 +165,12 @@ class Solution4(object):
 
         col = [-1 for _ in range(n)]
         self.shu = self.pie = self.na = 0
-        self.res = []
+        self.res = 0
 
         def solve(row):
 
             if row == n:
-                tmp = []
-                for i in range(n):
-                    s = ""
-                    for j in range(n):
-                        if j == col[i]:
-                            s += "Q"
-                        else:
-                            s += "."
-                    tmp.append(s)
-
-                self.res.append(tmp)
+                self.res += 1
                 return
 
             # 当前可放皇后的列
@@ -246,23 +206,12 @@ class Solution5(object):
         :rtype: List[List[str]]
         """
 
-        col = [-1 for _ in range(n)]
-        self.res = []
+        self.res = 0
 
         def solve(row, shu, pie, na):
 
             if row == n:
-                tmp = []
-                for i in range(n):
-                    s = ""
-                    for j in range(n):
-                        if j == col[i]:
-                            s += "Q"
-                        else:
-                            s += "."
-                    tmp.append(s)
-
-                self.res.append(tmp)
+                self.res += 1
                 return
 
             # 当前可放皇后的列
@@ -273,9 +222,7 @@ class Solution5(object):
                 p = available & -available
                 available ^= p
 
-                col[row] = math.log(p, 2)
                 solve(row + 1, shu | p, (pie | p) >> 1, (na | p) << 1)  # 设置标记
-                col[row] = -1
 
         ts = time.time()
         solve(0, 0, 0, 0)
@@ -285,4 +232,4 @@ class Solution5(object):
 
 
 s = Solution5()
-print(s.solveNQueens(4))
+print(s.solveNQueens(8))
