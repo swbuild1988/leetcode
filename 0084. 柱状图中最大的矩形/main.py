@@ -19,6 +19,7 @@ class Solution(object):
         return res
 
 # 优化暴力法
+# 先将每个点的左边和右边算出来，而不是每次都遍历下
 class Solution2(object):
     def largestRectangleArea(self, heights):
         """
@@ -26,6 +27,29 @@ class Solution2(object):
         :rtype: int
         """
 
+        res = 0
+        n = len(heights)
+        left = [i for i in range(n)]
+        right = [i for i in range(n)]
 
-s = Solution()
-print(s.largestRectangleArea([2, 1, 5, 6, 2, 3]))
+        for i in range(0, n):
+            tmp = i
+            while tmp > 0 and heights[tmp-1] >= heights[i]:
+                tmp = left[tmp-1]
+            left[i] = tmp
+        for i in range(n-1, -1, -1):
+            tmp = i
+            while tmp < n-1 and heights[tmp+1] >= heights[i]:
+                tmp = right[tmp+1]
+            right[i] = tmp
+            print("right", right)
+        
+        print(left, right)
+        for i in range(n):
+            res = max(res, heights[i]*(right[i]-left[i]+1))
+
+        return res
+
+
+s = Solution2()
+print(s.largestRectangleArea([2, 3]))
