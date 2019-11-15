@@ -51,5 +51,27 @@ class Solution2(object):
         return res
 
 
+# 利用栈来做
+class Solution3(object):
+    def largestRectangleArea(self, heights):
+        """
+        :type heights: List[int]
+        :rtype: int
+        """
+
+        heights = [0] + heights + [0]
+        stack = []
+        res = 0
+
+        for i in range(len(heights)):
+            print(stack)
+            while stack and heights[stack[-1]] > heights[i]:
+                tmp = stack.pop()
+                res = max(res, heights[tmp] * (i-stack[-1]-1))
+            stack.append(i)
+
+        return res
+
+
 s = Solution2()
 print(s.largestRectangleArea([2, 3]))
